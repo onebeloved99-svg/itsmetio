@@ -469,14 +469,14 @@
      * Primary: CountAPI (https://countapi.xyz)
      * Fallback: localStorage (per browser)
      ***********************/
-    async function initVisitorCounter(){
+   async function initVisitorCounter(){
       const elCounter = el('visitorCount');
 
       // try CountAPI first
-      const namespace = encodeURIComponent(CONFIG.COUNTAPI.NAMESPACE || 'personal-website');
-      const key = encodeURIComponent(CONFIG.COUNTAPI.KEY || 'total_visitors');
+      const namespace = encodeURIComponent(CONFIG.COUNTAPI.NAMESPACE || '');
+      const key = encodeURIComponent(CONFIG.COUNTAPI.KEY || '');
       if(namespace && key){
-        const url = `https://api.countapi.xyz/hit/${personal-website}/${total_visitors}`;
+        const url = `https://api.countapi.xyz/hit/${namespace}/${key}`;
         try {
           const resp = await fetch(url, {cache: 'no-store'});
           if(!resp.ok) throw new Error('CountAPI response not ok');
@@ -529,4 +529,5 @@
   </script>
 </body>
 </html>
+
 
